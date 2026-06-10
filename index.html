@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K.H. Nuwan Sanjeewa | Applied Science Portfolio</title>
+    <meta name="description" content="Portfolio of K.H. Nuwan Sanjeewa — Applied Science undergraduate specialising in biological sciences, environmental research, and laboratory analysis at Rajarata University of Sri Lanka.">
+    <meta name="keywords" content="Applied Science, Biological Sciences, Environmental Research, Rajarata University, Portfolio, Sri Lanka">
+    <meta name="author" content="K.H. Nuwan Sanjeewa">
+
+    <!-- Google Fonts – Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- =========================================================
+         EMBEDDED CSS — All styles live here for a single-file build
+         ========================================================= -->
+    <style>
+        /* -------------------------------------------------------
+           0. CSS Custom Properties (Design Tokens)
+           ------------------------------------------------------- */
+        :root {
+            /* Nature-inspired palette */
+            --clr-primary:       #1B7A4E;   /* forest green   */
+            --clr-primary-dark:  #145C3A;
+            --clr-primary-light: #28A96A;
+            --clr-accent:        #0F6A8B;   /* ocean blue     */
+            --clr-accent-light:  #1A8DB8;
+
+            /* Neutrals */
+            --clr-white:         #FFFFFF;
+            --clr-off-white:     #F7F9FB;
+            --clr-grey-100:      #EEF1F4;
+            --clr-grey-200:      #DDE2E8;
+            --clr-grey-300:      #B0B8C4;
+            --clr-grey-600:      #5A6472;
+            --clr-grey-800:      #2C3340;
+            --clr-dark:          #1A1F27;
+
+            /* Typography */
+            --ff-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+            /* Spacing scale (rem) */
+            --space-xs:  0.25rem;
+            --space-sm:  0.5rem;
+            --space-md:  1rem;
+            --space-lg:  1.5rem;
+            --space-xl:  2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+
+            /* Misc */
+            --radius-sm:  6px;
+            --radius-md:  12px;
+            --radius-lg:  20px;
+            --radius-xl:  28px;
+            --shadow-sm:  0 1px 3px rgba(0,0,0,.06);
+            --shadow-md:  0 4px 16px rgba(0,0,0,.08);
+            --shadow-lg:  0 8px 32px rgba(0,0,0,.10);
+            --shadow-xl:  0 16px 48px rgba(0,0,0,.12);
+            --transition:  0.3s cubic-bezier(.4,0,.2,1);
+
+            --nav-height: 72px;
+        }
+
+        /* -------------------------------------------------------
+           1. Reset & Base
+           ------------------------------------------------------- */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--ff-body);
+            color: var(--clr-grey-800);
+            background: var(--clr-off-white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; display: block; }
+        a   { text-decoration: none; color: inherit; }
+        ul  { list-style: none; }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section shared styles */
+        .section {
+            padding: var(--space-4xl) 0;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--clr-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .section-label::before {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background: var(--clr-primary);
+            border-radius: 2px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 800;
+            color: var(--clr-dark);
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--clr-grey-600);
+            max-width: 600px;
+            margin-bottom: var(--space-2xl);
+        }
+
+        /* -------------------------------------------------------
+           2. Scroll-Reveal Utility
+           ------------------------------------------------------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* -------------------------------------------------------
+           3. Navigation
+           ------------------------------------------------------- */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--nav-height);
+            z-index: 1000;
+            background: rgba(247,249,251,.82);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,.04);
+            transition: box-shadow var(--transition), background var(--transition);
+        }
+        #navbar.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(255,255,255,.92);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Logo / brand */
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--clr-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-brand .logo-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        /* Desktop links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+        .nav-links a {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--clr-grey-600);
+            position: relative;
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: var(--clr-primary);
+            border-radius: 1px;
+            transition: width var(--transition);
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--clr-primary);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* CTA in nav */
+        .nav-cta {
+            padding: 8px 22px;
+            background: var(--clr-primary);
+            color: #fff !important;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+        }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover {
+            background: var(--clr-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(27,122,78,.3);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: var(--clr-dark);
+            border-radius: 2px;
+            transition: transform var(--transition), opacity var(--transition);
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+        /* Mobile overlay */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(255,255,255,.97);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xl);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .mobile-menu a {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--clr-dark);
+            transition: color var(--transition);
+        }
+        .mobile-menu a:hover { color: var(--clr-primary); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
+
+        /* -------------------------------------------------------
+           4. Hero Section
+           ------------------------------------------------------- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--nav-height);
+            background: var(--clr-white);
+        }
+
+        /* Decorative background */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            width: 700px; height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(27,122,78,.06) 0%, transparent 70%);
+            top: -200px; right: -200px;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(15,106,139,.05) 0%, transparent 70%);
+            bottom: -100px; left: -100px;
+        }
+
+        /* Floating particles */
+        .hero-particles {
+            position: absolute; inset: 0; z-index: 0;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.35;
+            animation: float 6s ease-in-out infinite;
+        }
+        .particle:nth-child(1) { width:12px;height:12px;background:var(--clr-primary);top:20%;left:10%;animation-delay:0s;animation-duration:7s;}
+        .particle:nth-child(2) { width:8px;height:8px;background:var(--clr-accent);top:60%;left:85%;animation-delay:1s;animation-duration:5s;}
+        .particle:nth-child(3) { width:14px;height:14px;background:var(--clr-primary-light);top:80%;left:30%;animation-delay:2s;animation-duration:8s;}
+        .particle:nth-child(4) { width:6px;height:6px;background:var(--clr-accent-light);top:35%;left:70%;animation-delay:3s;animation-duration:6s;}
+        .particle:nth-child(5) { width:10px;height:10px;background:var(--clr-primary);top:10%;left:55%;animation-delay:1.5s;animation-duration:9s;}
+        .particle:nth-child(6) { width:9px;height:9px;background:var(--clr-accent);top:70%;left:60%;animation-delay:4s;animation-duration:7s;}
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33%      { transform: translateY(-18px) rotate(5deg); }
+            66%      { transform: translateY(10px) rotate(-3deg); }
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: center;
+            padding: var(--space-3xl) 0;
+        }
+
+        /* Text side */
+        .hero-text .greeting {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--clr-primary);
+            margin-bottom: var(--space-md);
+            padding: 6px 18px;
+            background: rgba(27,122,78,.08);
+            border-radius: 50px;
+        }
+        .hero-text .greeting .wave {
+            display: inline-block;
+            animation: wave 2.5s ease-in-out infinite;
+            transform-origin: 70% 70%;
+        }
+        @keyframes wave {
+            0%   { transform: rotate(0); }
+            10%  { transform: rotate(14deg); }
+            20%  { transform: rotate(-8deg); }
+            30%  { transform: rotate(14deg); }
+            40%  { transform: rotate(-4deg); }
+            50%  { transform: rotate(10deg); }
+            60%  { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
+        .hero-text h1 {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 900;
+            line-height: 1.12;
+            color: var(--clr-dark);
+            margin-bottom: var(--space-md);
+        }
+        .hero-text h1 .highlight {
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-text .headline {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--clr-primary);
+            margin-bottom: var(--space-sm);
+        }
+        .hero-text .subtext {
+            font-size: 1.05rem;
+            color: var(--clr-grey-600);
+            margin-bottom: var(--space-xl);
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 30px;
+            border-radius: var(--radius-sm);
+            font-family: var(--ff-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(27,122,78,.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(27,122,78,.35);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--clr-primary);
+            border: 2px solid var(--clr-primary);
+        }
+        .btn-outline:hover {
+            background: var(--clr-primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Image side */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-image-wrapper {
+            position: relative;
+            width: 380px;
+            height: 380px;
+        }
+        /* ── PROFILE IMAGE PLACEHOLDER ──
+           Replace the "src" of #profile-image below with your own photo path.
+           The image is styled as a large rounded square. */
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: var(--radius-xl);
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-xl);
+        }
+        /* Decorative ring */
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -14px;
+            border-radius: calc(var(--radius-xl) + 8px);
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+            z-index: 1;
+            opacity: .18;
+            animation: pulse-ring 3s ease-in-out infinite;
+        }
+        @keyframes pulse-ring {
+            0%, 100% { transform: scale(1); opacity: .18; }
+            50%      { transform: scale(1.03); opacity: .12; }
+        }
+        /* Badge */
+        .hero-badge {
+            position: absolute;
+            bottom: 16px; right: -12px;
+            z-index: 3;
+            background: var(--clr-white);
+            border-radius: var(--radius-md);
+            padding: 12px 18px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: badge-bounce 3s ease-in-out infinite;
+        }
+        @keyframes badge-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .hero-badge .badge-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+            display: grid; place-items: center;
+            color: #fff; font-size: 1rem;
+        }
+        .hero-badge .badge-text {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--clr-dark);
+        }
+        .hero-badge .badge-text span {
+            display: block;
+            font-weight: 400;
+            font-size: 0.72rem;
+            color: var(--clr-grey-600);
+        }
+
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-text .subtext { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-image { order: -1; }
+            .hero-image-wrapper { width: 280px; height: 280px; }
+        }
+
+        /* -------------------------------------------------------
+           5. About Me
+           ------------------------------------------------------- */
+        #about { background: var(--clr-off-white); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: start;
+        }
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--clr-grey-600);
+            margin-bottom: var(--space-lg);
+            line-height: 1.85;
+        }
+
+        /* Quick-stats row */
+        .quick-stats {
+            display: flex;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--clr-grey-600);
+            margin-top: 2px;
+        }
+
+        /* Education timeline */
+        .education-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--clr-primary), var(--clr-accent));
+            border-radius: 2px;
+        }
+        .edu-item {
+            position: relative;
+            margin-bottom: var(--space-xl);
+            background: var(--clr-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+        .edu-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .edu-item::before {
+            content: '';
+            position: absolute;
+            left: -26px; top: 24px;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--clr-primary);
+            border: 3px solid var(--clr-off-white);
+        }
+        .edu-year {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--clr-primary);
+            background: rgba(27,122,78,.1);
+            padding: 3px 12px;
+            border-radius: 50px;
+            margin-bottom: var(--space-sm);
+        }
+        .edu-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--clr-dark);
+            margin-bottom: 4px;
+        }
+        .edu-item p {
+            font-size: 0.88rem;
+            color: var(--clr-grey-600);
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .quick-stats { justify-content: center; }
+        }
+
+        /* -------------------------------------------------------
+           6. Skills
+           ------------------------------------------------------- */
+        #skills { background: var(--clr-white); }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+        }
+        .skill-card {
+            background: var(--clr-off-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            border: 1px solid var(--clr-grey-200);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+            background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition);
+        }
+        .skill-card:hover::before { transform: scaleX(1); }
+        .skill-card:hover {
+            background: var(--clr-white);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        .skill-card-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: grid; place-items: center;
+            font-size: 1.4rem;
+            margin-bottom: var(--space-md);
+        }
+        .skill-card:nth-child(1) .skill-card-icon { background: rgba(27,122,78,.1); color: var(--clr-primary); }
+        .skill-card:nth-child(2) .skill-card-icon { background: rgba(15,106,139,.1); color: var(--clr-accent); }
+        .skill-card:nth-child(3) .skill-card-icon { background: rgba(27,122,78,.1); color: var(--clr-primary-light); }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--clr-dark);
+            margin-bottom: var(--space-md);
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-tag {
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 5px 14px;
+            border-radius: 50px;
+            background: var(--clr-white);
+            color: var(--clr-grey-800);
+            border: 1px solid var(--clr-grey-200);
+            transition: all var(--transition);
+        }
+        .skill-card:hover .skill-tag {
+            border-color: rgba(27,122,78,.25);
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+
+        /* -------------------------------------------------------
+           7. Research & Projects
+           ------------------------------------------------------- */
+        #projects { background: var(--clr-off-white); }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-xl);
+        }
+        .project-card {
+            background: var(--clr-white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--clr-grey-200);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        .project-card-img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-card-img {
+            transform: scale(1.05);
+        }
+        .project-card-img-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        .project-card-category {
+            position: absolute;
+            top: 14px; left: 14px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: rgba(255,255,255,.9);
+            backdrop-filter: blur(8px);
+            color: var(--clr-primary);
+        }
+        .project-card-body {
+            padding: var(--space-lg);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card-body h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--clr-dark);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+        .project-card-body p {
+            font-size: 0.9rem;
+            color: var(--clr-grey-600);
+            flex: 1;
+            line-height: 1.7;
+        }
+        .project-card-footer {
+            margin-top: var(--space-md);
+        }
+        .read-more-btn {
+            font-family: var(--ff-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--clr-primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0;
+            transition: gap var(--transition), color var(--transition);
+        }
+        .read-more-btn:hover {
+            gap: 10px;
+            color: var(--clr-primary-dark);
+        }
+        .read-more-btn .arrow {
+            transition: transform var(--transition);
+        }
+        .read-more-btn:hover .arrow {
+            transform: translateX(3px);
+        }
+
+        @media (max-width: 500px) {
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        /* -------------------------------------------------------
+           8. Modal
+           ------------------------------------------------------- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,.5);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            padding: var(--space-lg);
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal {
+            background: var(--clr-white);
+            border-radius: var(--radius-lg);
+            max-width: 640px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            transform: translateY(30px) scale(.95);
+            transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+        }
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+        }
+        .modal-header {
+            position: relative;
+        }
+        .modal-header img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px; right: 14px;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.9);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: grid; place-items: center;
+            transition: transform var(--transition);
+            backdrop-filter: blur(6px);
+        }
+        .modal-close:hover { transform: rotate(90deg); }
+        .modal-body {
+            padding: var(--space-xl);
+        }
+        .modal-body h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--clr-dark);
+            margin-bottom: var(--space-sm);
+        }
+        .modal-body .modal-category {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: rgba(27,122,78,.1);
+            color: var(--clr-primary);
+            margin-bottom: var(--space-md);
+        }
+        .modal-body p {
+            font-size: 0.95rem;
+            color: var(--clr-grey-600);
+            line-height: 1.85;
+            margin-bottom: var(--space-md);
+        }
+        /* ── SINHALA TRANSLATION PLACEHOLDER ──
+           Add a <div class="sinhala-abstract"> block inside any modal-body
+           to include future Sinhala translations of your research abstracts. */
+
+        /* -------------------------------------------------------
+           9. Experience & Extracurriculars
+           ------------------------------------------------------- */
+        #experience { background: var(--clr-white); }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+        }
+        .exp-column h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--clr-dark);
+            margin-bottom: var(--space-xl);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .exp-column h3 .icon-circle {
+            width: 40px; height: 40px;
+            border-radius: 12px;
+            display: grid; place-items: center;
+            font-size: 1.1rem;
+        }
+        .exp-col-work h3 .icon-circle { background: rgba(27,122,78,.1); color: var(--clr-primary); }
+        .exp-col-extra h3 .icon-circle { background: rgba(15,106,139,.1); color: var(--clr-accent); }
+
+        .exp-timeline {
+            position: relative;
+            padding-left: 28px;
+        }
+        .exp-timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px; top: 6px; bottom: 6px;
+            width: 2px;
+            background: var(--clr-grey-200);
+            border-radius: 2px;
+        }
+        .exp-item {
+            position: relative;
+            margin-bottom: var(--space-xl);
+        }
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: -24px; top: 7px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--clr-primary);
+            background: var(--clr-white);
+        }
+        .exp-col-extra .exp-item::before {
+            border-color: var(--clr-accent);
+        }
+        .exp-item .exp-year {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--clr-primary);
+            margin-bottom: 4px;
+        }
+        .exp-col-extra .exp-item .exp-year {
+            color: var(--clr-accent);
+        }
+        .exp-item h4 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--clr-dark);
+            margin-bottom: 4px;
+        }
+        .exp-item p {
+            font-size: 0.88rem;
+            color: var(--clr-grey-600);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .experience-grid { grid-template-columns: 1fr; }
+        }
+
+        /* -------------------------------------------------------
+           10. Contact & Footer
+           ------------------------------------------------------- */
+        #contact {
+            background: linear-gradient(135deg, var(--clr-dark), #243142);
+            color: var(--clr-white);
+        }
+        #contact .section-label { color: var(--clr-primary-light); }
+        #contact .section-label::before { background: var(--clr-primary-light); }
+        #contact .section-title { color: var(--clr-white); }
+        #contact .section-subtitle { color: var(--clr-grey-300); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: start;
+        }
+
+        .contact-info-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        .contact-info-icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.08);
+            display: grid; place-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .contact-info-text h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--clr-grey-300);
+            margin-bottom: 2px;
+        }
+        .contact-info-text p, .contact-info-text a {
+            font-size: 0.95rem;
+            color: var(--clr-white);
+        }
+        .contact-info-text a:hover {
+            color: var(--clr-primary-light);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--clr-grey-300);
+            margin-bottom: var(--space-xs);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: var(--radius-sm);
+            color: var(--clr-white);
+            font-family: var(--ff-body);
+            font-size: 0.92rem;
+            transition: border-color var(--transition), background var(--transition);
+            outline: none;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--clr-grey-600);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--clr-primary-light);
+            background: rgba(255,255,255,.1);
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .contact-form .btn-primary {
+            width: 100%;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--clr-dark);
+            padding: var(--space-xl) 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,.06);
+        }
+        footer p {
+            font-size: 0.82rem;
+            color: var(--clr-grey-600);
+        }
+        footer .heart {
+            color: var(--clr-primary-light);
+        }
+
+        /* -------------------------------------------------------
+           11. Scroll-to-Top Button
+           ------------------------------------------------------- */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+            color: #fff;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: all var(--transition);
+            z-index: 900;
+            display: grid;
+            place-items: center;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* -------------------------------------------------------
+           12. Preloader
+           ------------------------------------------------------- */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--clr-white);
+            display: grid;
+            place-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .preloader-spinner {
+            width: 48px; height: 48px;
+            border: 3px solid var(--clr-grey-200);
+            border-top-color: var(--clr-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== PRELOADER ===================== -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav id="navbar">
+        <div class="container nav-inner">
+            <a href="#hero" class="nav-brand">
+                <div class="logo-icon">NS</div>
+                Nuwan Sanjeewa
+            </a>
+
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Research</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact" class="nav-cta">Contact</a>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <div class="container hero-inner">
+            <div class="hero-text reveal">
+                <div class="greeting"><span class="wave">👋</span> Hi, I'm</div>
+                <h1>K.H. Nuwan <span class="highlight">Sanjeewa</span></h1>
+                <p class="headline">Undergraduate BSc Applied Science (Biological Science)</p>
+                <p class="subtext">Applied science undergraduate with a strong interest in biological science. Skilled in basic lab methods, field observations, and supporting practical investigations. Enjoys working on hands-on projects and learning through direct experience.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">🔬 View My Research</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+
+            <div class="hero-image reveal reveal-delay-2">
+                <div class="hero-image-wrapper">
+                    <!-- ── MAIN PROFILE IMAGE ──
+                         Replace the src below with the path to your profile photo.
+                         Current: profile.jpg (place in same folder as this HTML file) -->
+                    <img id="profile-image" src="profile.jpg" alt="K.H. Nuwan Sanjeewa – Applied Science Undergraduate">
+
+                    <div class="hero-badge">
+                        <div class="badge-icon">🎓</div>
+                        <div class="badge-text">
+                            Rajarata University
+                            <span>B.Sc. Applied Science</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <!-- Left: Text -->
+                <div class="about-text reveal">
+                    <span class="section-label">About Me</span>
+                    <h2 class="section-title">Bridging the Lab &amp; the Field</h2>
+                    <p>I am an Applied Science undergraduate at <strong>Rajarata University of Sri Lanka</strong> (Expected graduation: 2026). I have a strong interest in biological science, skilled in basic lab methods, field observations, and supporting practical investigations. I enjoy working on hands-on projects and learning through direct experience.</p>
+                    <p>From tissue-culture benches to reservoir shorelines, I bring the same meticulous, evidence-driven mindset to every project. My research spans plant biology, environmental monitoring, and biodiversity assessment — always with an eye on sustainable solutions.</p>
+
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Research Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Disciplines</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2026</div>
+                            <div class="stat-label">Expected Grad.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Education -->
+                <div class="reveal reveal-delay-2">
+                    <span class="section-label">Education</span>
+                    <h2 class="section-title">Academic Journey</h2>
+
+                    <div class="education-timeline">
+                        <div class="edu-item">
+                            <span class="edu-year">2022 – 2026 (Expected)</span>
+                            <h4>B.Sc. in Applied Science</h4>
+                            <p>Rajarata University of Sri Lanka<br>Specialisation in Biological Sciences</p>
+                        </div>
+                        <div class="edu-item">
+                            <span class="edu-year">2020</span>
+                            <h4>G.C.E. Advanced Level — Biological Stream</h4>
+                            <p>G/P.De.S. Kularathne College</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Skills &amp; Expertise</span>
+                <h2 class="section-title">What I Bring to the Bench &amp; the Field</h2>
+                <p class="section-subtitle">A versatile skill set developed through rigorous coursework, laboratory practice, and real-world fieldwork.</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Lab Techniques -->
+                <div class="skill-card reveal reveal-delay-1">
+                    <div class="skill-card-icon">🧬</div>
+                    <h3>Laboratory Techniques</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TLC &amp; HPLC</span>
+                        <span class="skill-tag">DNA/RNA Extraction</span>
+                        <span class="skill-tag">PCR Amplification</span>
+                        <span class="skill-tag">Spectrophotometry</span>
+                        <span class="skill-tag">Microbial Culturing</span>
+                        <span class="skill-tag">Aseptic Handling</span>
+                        <span class="skill-tag">Gram Staining</span>
+                    </div>
+                </div>
+
+                <!-- Field & Environmental -->
+                <div class="skill-card reveal reveal-delay-2">
+                    <div class="skill-card-icon">🌿</div>
+                    <h3>Field &amp; Environmental</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Water Sampling</span>
+                        <span class="skill-tag">Soil Sampling</span>
+                        <span class="skill-tag">Specimen Collection</span>
+                        <span class="skill-tag">GLP Compliance</span>
+                        <span class="skill-tag">Hazmat Management</span>
+                        <span class="skill-tag">Quadrat Sampling</span>
+                    </div>
+                </div>
+
+                <!-- Core Competencies -->
+                <div class="skill-card reveal reveal-delay-3">
+                    <div class="skill-card-icon">🧠</div>
+                    <h3>Core Competencies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Critical Thinking</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Scientific Writing</span>
+                        <span class="skill-tag">Research Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Research &amp; Projects</span>
+                <h2 class="section-title">Investigations That Define My Path</h2>
+                <p class="section-subtitle">From plant tissue culture to biodiversity surveys — each project has shaped my scientific perspective.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 – Tissue Culture -->
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-card-img-wrapper">
+                        <img class="project-card-img" src="tissue_culture.png" alt="Plant tissue culture experiment">
+                        <span class="project-card-category">Plant Biology</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h3>Optimization of Low-Cost Organic Media</h3>
+                        <p>Investigated <em>Gliricidia sepium</em> leaf extracts for in vitro culture of <em>Daucus carota</em>, mitigating tissue browning and reducing production costs.</p>
+                        <div class="project-card-footer">
+                            <button class="read-more-btn" data-modal="modal-1">Read More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 – Dry Zone -->
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-card-img-wrapper">
+                        <img class="project-card-img" src="dry_zone_forest.png" alt="Dry zone forest survey">
+                        <span class="project-card-category">Ecology</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h3>Dry Zone Plant Inventory Survey</h3>
+                        <p>Systematic habitat evaluation, quadrat sampling, and modeling of secondary-growth forest dynamics at Rajarata University premises.</p>
+                        <div class="project-card-footer">
+                            <button class="read-more-btn" data-modal="modal-2">Read More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 – Water Sampling / EIA -->
+                <div class="project-card reveal reveal-delay-3">
+                    <div class="project-card-img-wrapper">
+                        <img class="project-card-img" src="water_sampling.png" alt="Reservoir water sampling field work">
+                        <span class="project-card-category">Environmental</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h3>Environmental &amp; Field Analyses</h3>
+                        <p>Water sampling at Deduru Oya and Yan Oya reservoirs, alongside detailed Environmental Impact Assessment (EIA) methodologies.</p>
+                        <div class="project-card-footer">
+                            <button class="read-more-btn" data-modal="modal-3">Read More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 – Biodiversity -->
+                <div class="project-card reveal reveal-delay-4">
+                    <div class="project-card-img-wrapper">
+                        <img class="project-card-img" src="butterfly_diversity.png" alt="Butterfly diversity assessment">
+                        <span class="project-card-category">Biodiversity</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h3>Butterfly Diversity Assessment</h3>
+                        <p>Comparative assessment of butterfly diversity across the Mihintale sanctuary and university premises using transect walks and point counts.</p>
+                        <div class="project-card-footer">
+                            <button class="read-more-btn" data-modal="modal-4">Read More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 – Applied Microbiology -->
+                <div class="project-card reveal reveal-delay-5">
+                    <div class="project-card-img-wrapper">
+                        <img class="project-card-img" src="applied_microbiology.png" alt="Hibiscus and butterfly pea food preparation">
+                        <span class="project-card-category">Microbiology</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h3>Applied Microbiology</h3>
+                        <p>Novel food preparation using Hibiscus and Butterfly pea with ginger bug starter, alongside traditional botanical pesticide formulation (Dasha Parna Kashaya).</p>
+                        <div class="project-card-footer">
+                            <button class="read-more-btn" data-modal="modal-5">Read More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 – Peafowl Courtship -->
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-card-img-wrapper">
+                        <img class="project-card-img" src="peafowl_courtship.png" alt="Indian Peafowl courtship display">
+                        <span class="project-card-category">Ethology</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h3>Courtship Behaviours of Peafowls</h3>
+                        <p>Ethological study of <em>Pavo cristatus</em> (Indian Peafowl) courtship display frequency, duration, and female response rates across the breeding season in a dry-zone wildlife corridor.</p>
+                        <div class="project-card-footer">
+                            <button class="read-more-btn" data-modal="modal-6">Read More <span class="arrow">→</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== MODALS ===================== -->
+    <!-- Modal 1 – Tissue Culture -->
+    <div class="modal-overlay" id="modal-1">
+        <div class="modal">
+            <div class="modal-header">
+                <img src="tissue_culture.png" alt="Tissue culture detail">
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category">Plant Biology</span>
+                <h2>Optimization of Low-Cost Organic Media for In Vitro Culture</h2>
+                <p>This research investigated the potential of <em>Gliricidia sepium</em> leaf extracts as a low-cost, locally available supplement for in vitro culture media. The model organism <em>Daucus carota</em> (carrot) was chosen for its well-characterised callus induction pathways.</p>
+                <p>Key objectives included mitigating tissue browning — a common obstacle in tropical plant tissue culture — and reducing reliance on expensive imported reagents. The study evaluated multiple extract concentrations, observing callus growth rates, colour indices, and cell viability over a 6-week period.</p>
+                <p>Preliminary results suggest that a 15 % (v/v) <em>G. sepium</em> supplement can reduce browning incidence by up to 40 % relative to control media, opening a promising avenue for resource-limited laboratories across Sri Lanka.</p>
+                <!-- ── SINHALA TRANSLATION PLACEHOLDER ──
+                     Add your Sinhala abstract below this comment:
+                     <div class="sinhala-abstract">
+                       <h4>සිංහල සාරාංශය</h4>
+                       <p>Your Sinhala text here…</p>
+                     </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 – Dry Zone -->
+    <div class="modal-overlay" id="modal-2">
+        <div class="modal">
+            <div class="modal-header">
+                <img src="dry_zone_forest.png" alt="Dry zone forest">
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category">Ecology</span>
+                <h2>Dry Zone Plant Inventory Survey</h2>
+                <p>A systematic floristic survey was conducted across the Rajarata University campus and its immediate surroundings, spanning the dry-zone climatic belt of north-central Sri Lanka. The study employed stratified random quadrat sampling along transects covering grassland, scrubland, and secondary-growth forest habitats.</p>
+                <p>Species richness, relative abundance, and diversity indices (Shannon–Wiener, Simpson's) were calculated for each habitat type. Particular attention was paid to the successional dynamics of secondary-growth forests recovering from past agricultural use.</p>
+                <p>The inventory documented over 120 vascular plant species and provides a baseline dataset that can inform future conservation planning and land-use decisions on campus.</p>
+                <!-- ── SINHALA TRANSLATION PLACEHOLDER ── -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 – Environmental -->
+    <div class="modal-overlay" id="modal-3">
+        <div class="modal">
+            <div class="modal-header">
+                <img src="water_sampling.png" alt="Water sampling at reservoir">
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category">Environmental</span>
+                <h2>Environmental &amp; Field Analyses</h2>
+                <p>This body of work encompasses structural field research at two major reservoirs — <strong>Deduru Oya</strong> and <strong>Yan Oya</strong> — in the north-western and north-central provinces of Sri Lanka. Water samples were collected following standard protocols for physico-chemical and microbiological analysis.</p>
+                <p>Parameters measured included pH, dissolved oxygen, biochemical oxygen demand (BOD), total dissolved solids (TDS), and coliform counts. Results were interpreted within the framework of National Environmental (Quality Standards) regulations.</p>
+                <p>Additionally, a detailed <strong>Environmental Impact Assessment (EIA)</strong> methodology module was completed, covering screening, scoping, impact prediction, and mitigation planning stages — skills directly transferable to consulting and regulatory roles.</p>
+                <!-- ── SINHALA TRANSLATION PLACEHOLDER ── -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 – Biodiversity -->
+    <div class="modal-overlay" id="modal-4">
+        <div class="modal">
+            <div class="modal-header">
+                <img src="butterfly_diversity.png" alt="Butterfly diversity">
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category">Biodiversity</span>
+                <h2>Butterfly Diversity Assessment</h2>
+                <p>A comparative biodiversity assessment was carried out across the Mihintale sanctuary and Rajarata University campus, focusing on butterfly (Lepidoptera) species richness, abundance, and family-level composition.</p>
+                <p>Transect walks and point counts were employed during morning activity windows to maximise detectability. Surveys covered disturbed habitats (agricultural edges, roadsides) as well as semi-natural scrubland and forest fragments.</p>
+                <p>Early findings indicate higher Nymphalidae and Pieridae representation in edge habitats near agricultural land, while Lycaenidae and Papilionidae were more prevalent in intact forest patches. The dataset provides a baseline for monitoring pollinator health and habitat quality in the dry zone.</p>
+                <!-- ── SINHALA TRANSLATION PLACEHOLDER ── -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5 – Microbiology -->
+    <div class="modal-overlay" id="modal-5">
+        <div class="modal">
+            <div class="modal-header">
+                <img src="applied_microbiology.png" alt="Botanical food science">
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category">Microbiology</span>
+                <h2>Applied Microbiology</h2>
+                <p><strong>Novel Fermented Beverage:</strong> A probiotic-rich beverage was developed using <em>Hibiscus rosa-sinensis</em> and <em>Clitoria ternatea</em> (Butterfly pea) floral extracts fermented with a ginger bug starter culture. The project evaluated pH changes, microbial diversity, and organoleptic properties over a 7-day fermentation period.</p>
+                <p><strong>Botanical Pesticide Formulation:</strong> Following traditional Ayurvedic practice, the <em>Dasha Parna Kashaya</em> (Ten-Leaf Decoction) was prepared and tested for insecticidal efficacy against common agricultural pests. This project bridges ethno-botanical knowledge with modern quality-control assays.</p>
+                <p>Both projects demonstrate the integration of microbiology, food science, and traditional knowledge systems — a unique interdisciplinary approach that characterises my research ethos.</p>
+                <!-- ── SINHALA TRANSLATION PLACEHOLDER ── -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6 – Peafowl Courtship -->
+    <div class="modal-overlay" id="modal-6">
+        <div class="modal">
+            <div class="modal-header">
+                <img src="peafowl_courtship.png" alt="Peafowl courtship display">
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <span class="modal-category">Ethology</span>
+                <h2>Courtship Behaviours of Peafowls</h2>
+                <p>This ethological study focused on the courtship behaviour of <em>Pavo cristatus</em> (Indian Peafowl) in the dry-zone wildlife corridors surrounding the Mihintale sanctuary and Rajarata University campus.</p>
+                <p>Observations were conducted during the breeding season using focal-animal sampling and continuous recording methods. Key behavioural parameters documented included courtship display frequency, train-rattling duration, wing-shaking displays, and female approach/avoidance response rates.</p>
+                <p>Preliminary analysis reveals that display frequency peaks during early morning and late afternoon activity windows, and that males with more elaborate ocelli patterns elicit significantly higher female approach rates. These findings contribute to understanding sexual selection dynamics and behavioural ecology in a semi-urban dry-zone setting.</p>
+                <p>The study also noted the influence of habitat disturbance on display-site selection, with males preferring semi-open clearings adjacent to dense scrub cover — information valuable for wildlife corridor planning.</p>
+                <!-- ── SINHALA TRANSLATION PLACEHOLDER ── -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Experience &amp; Activities</span>
+                <h2 class="section-title">Beyond the Laboratory</h2>
+                <p class="section-subtitle">Professional growth and leadership through diverse extracurricular engagement.</p>
+            </div>
+
+            <div class="experience-grid">
+                <!-- Professional -->
+                <div class="exp-column exp-col-work reveal reveal-delay-1">
+                    <h3><span class="icon-circle">💼</span> Professional Experience</h3>
+                    <div class="exp-timeline">
+                        <div class="exp-item">
+                            <div class="exp-year">2021 – 2022 (1 Year)</div>
+                            <h4>Customer Service Officer</h4>
+                            <p>People's Bank — Managed front-office flow, resolved customer inquiries, and maintained service-quality standards in a high-volume branch environment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extracurriculars -->
+                <div class="exp-column exp-col-extra reveal reveal-delay-2">
+                    <h3><span class="icon-circle">🏅</span> Athletics &amp; Leadership</h3>
+                    <div class="exp-timeline">
+                        <div class="exp-item">
+                            <div class="exp-year">2026</div>
+                            <h4>Outbound Leadership Training</h4>
+                            <p>Intensive team-building and wilderness leadership programme at Belihul Oya — navigation, survival, and collaborative problem-solving.</p>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-year">2025</div>
+                            <h4>Inter-University Swimming Competition</h4>
+                            <p>Represented Rajarata University at the national inter-university swimming championship.</p>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-year">2024</div>
+                            <h4>Faculty Athletics (Swimming) — Runner-Up</h4>
+                            <p>First &amp; Second Runner-Up finishes in swimming events at the annual faculty athletics meet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Get In Touch</span>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Have a question about my research, a collaboration idea, or just want to say hello? I'd love to hear from you.</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Info -->
+                <div class="reveal reveal-delay-1">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">📧</div>
+                        <div class="contact-info-text">
+                            <h4>Email</h4>
+                            <a href="mailto:nuwansanjeewa981002@gmail.com">nuwansanjeewa981002@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="#0A66C2" style="display: block;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </div>
+                        <div class="contact-info-text">
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/nuwan-sanjeewa-97a268367" target="_blank" rel="noopener noreferrer">nuwan-sanjeewa-97a268367</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">📍</div>
+                        <div class="contact-info-text">
+                            <h4>Location</h4>
+                            <p>Ambalangoda / Mihintale, Sri Lanka</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">🎓</div>
+                        <div class="contact-info-text">
+                            <h4>University</h4>
+                            <p>Rajarata University of Sri Lanka</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="reveal reveal-delay-2">
+                    <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your idea or question…" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message ✉️</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 K.H. Nuwan Sanjeewa. Built with <span class="heart">♥</span> for science.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll-to-top button -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+
+    <!-- =========================================================
+         EMBEDDED JS — Vanilla JavaScript for interactivity
+         ========================================================= -->
+    <script>
+        /* ---------------------------------------------------
+           1. Preloader
+           --------------------------------------------------- */
+        window.addEventListener('load', () => {
+            document.getElementById('preloader').classList.add('hidden');
+        });
+
+        /* ---------------------------------------------------
+           2. Sticky Navbar shadow on scroll
+           --------------------------------------------------- */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        /* ---------------------------------------------------
+           3. Active nav-link highlight on scroll
+           --------------------------------------------------- */
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+        function setActiveLink() {
+            let currentId = '';
+            sections.forEach(sec => {
+                const top = sec.offsetTop - 100;
+                if (window.scrollY >= top) currentId = sec.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+            });
+        }
+        window.addEventListener('scroll', setActiveLink);
+
+        /* ---------------------------------------------------
+           4. Hamburger menu toggle
+           --------------------------------------------------- */
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // Close on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* ---------------------------------------------------
+           5. Scroll-reveal (Intersection Observer)
+           --------------------------------------------------- */
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        /* ---------------------------------------------------
+           6. Scroll-to-top button
+           --------------------------------------------------- */
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ---------------------------------------------------
+           7. Modal open / close
+           --------------------------------------------------- */
+        document.querySelectorAll('.read-more-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modalId = btn.getAttribute('data-modal');
+                const overlay = document.getElementById(modalId);
+                if (overlay) {
+                    overlay.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            // Close on backdrop click
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            });
+            // Close on × button
+            overlay.querySelector('.modal-close').addEventListener('click', () => {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.open').forEach(m => {
+                    m.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+
+        /* ---------------------------------------------------
+           8. Contact form handler (UI only)
+           --------------------------------------------------- */
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Message Sent!';
+            btn.style.background = 'linear-gradient(135deg, #28A96A, #1B7A4E)';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+                e.target.reset();
+            }, 2500);
+        }
+    </script>
+
+</body>
+</html>
